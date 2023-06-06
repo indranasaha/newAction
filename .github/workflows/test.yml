@@ -3,7 +3,7 @@ name: first workflow
 on: 
   workflow_dispatch:
     inputs:
-      load-type:
+      logLevel:
         description: 'Type of load'
         required: true
         default: 'smoke'
@@ -21,3 +21,6 @@ jobs:
       run: |
           echo "hello there - first output"
           echo "How are you doing -second output"
+          echo "Type of load: $LEVEL"
+      env:
+          LEVEL: ${{ inputs.logLevel }}
