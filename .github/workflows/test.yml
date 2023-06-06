@@ -1,13 +1,23 @@
-name: Greetings
+name: first workflow
 
-on: [push, workflow_dispatch]
-
+on: 
+  workflow_dispatch:
+    inputs:
+      load-type:
+        description: 'Type of load'
+        required: true
+        default: 'smoke'
+        type: choice
+        options:
+          - smoke
+          - stress
+    
 jobs:
   runjob:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-      with:
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
-        issue-message: "Message that will be displayed on users' first issue"
-        pr-message: "Message that will be displayed on users' first pull request"
+    - name: print hello
+      run: |
+          echo "hello there - first output"
+          echo "How are you doing -second output"
